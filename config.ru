@@ -10,6 +10,6 @@ use MeatsController
 use VegetablesController
 use MealsController
 use TypesController
-use IngredientsListController
-use DishesListController
+use IngredientListsController
+use DishListsController
 run ApplicationController
