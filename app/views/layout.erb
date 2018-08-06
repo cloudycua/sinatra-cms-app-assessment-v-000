@@ -5,6 +5,7 @@
   </head>
   <body>
 		<header>
+<<<<<<< HEAD
   			<a href="/">HOME</a>
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -19,6 +20,12 @@
         <a href="/logout"><button>logout</button></a>
       <% end %>
       <br><br>
+=======
+			<a href="/">HOME</a>
+      <div style="text-align: right">
+        current_user.username&nbsp&nbsp&nbsp<a href="/logout" align="right">Log Out</a>
+      </div>
+>>>>>>> 049e546a603c0a04b25b23ef850e18384daa22bd
       <%= yield %>
   </body>
 </html>

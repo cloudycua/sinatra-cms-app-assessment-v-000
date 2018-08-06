@@ -38,6 +38,7 @@ class UsersControllers < ApplicationController
       redirect to '/'
     else
       erb :'/users/login', locals: {message: "Invalid Username or Password. Please try again."}
+    end
   end
 
   get '/logout' do
