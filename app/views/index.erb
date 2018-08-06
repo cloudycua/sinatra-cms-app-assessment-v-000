@@ -1,7 +1,30 @@
-<nav>
+<h1>Welcome to the Recipe Database!</h1>
+<br><br>
 
-    <h1>Welcome to the Recipe Database!</h1>
+<% if logged_in? %>
+  View All Recipes
 
+  View Recipes by Ingredient:
+    <ul>
+      <li>Meat</li>
+      <li>Vegetable</li>
+      <li>Meal</li>
+      <li>Type</li>
+    <ul>
 
-
-</nav>
+  <a href="/recipes/new"><button>Add a New Recipe</button></a>
+<% else %>
+  <p>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    Please Log In or Sign Up to view the database
+  </p>
+  <br>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <a href="/login"><button>Log In</button></a>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <a href="/signup"><button>Sign Up</button></a>
+<% end %>

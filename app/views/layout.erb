@@ -1,33 +1,24 @@
 <!doctype html>
 <html lang="en">
   <head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-		<script src="https://raw.github.com/Wilto/iOS-Orientationchange-Fix/master/ios-orientationchange-fix.js"></script>
     <title>Recipe Database</title>
-		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
-		<link rel="stylesheet" href="css/layout.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/device_styles.css">
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
   </head>
   <body>
-    <!--/////////// Header //////////-->
 		<header>
-
-			<!--/////////// Nav Bar //////////-->
-			<div id="nav_bar">
-				<div class="wrapper">
-					<nav>
-						<a href="/">Recipe Database</a>current_user.username<a href="/logout">Log Out</a>
-					</nav>
-				</div><!-- .wrapper -->
-			</div>
-			<!--/////////// Ends Nav Bar //////////-->
-
-      <!--/////////// Page Content //////////-->
+  			<a href="/">HOME</a>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <% if logged_in? %>
+        <%= current_user.username %>
+        &nbsp&nbsp
+        <a href="/logout"><button>logout</button></a>
+      <% end %>
+      <br><br>
       <%= yield %>
-      <!--/////////// End Page Content //////////-->
-
   </body>
 </html>
