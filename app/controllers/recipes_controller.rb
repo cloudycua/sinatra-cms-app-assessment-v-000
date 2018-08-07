@@ -20,7 +20,6 @@ class RecipesController < ApplicationController
   post '/recipes' do
     if logged_in?
       @recipe = Recipe.create(params["recipe"])
-      binding.pry
 
       if !params[:meat][:name].empty?
         @meat = params[:meat]
