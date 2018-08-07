@@ -16,9 +16,11 @@ class UsersControllers < ApplicationController
   post '/signup' do
     if params[:username] == "" || params[:password] == ""
       erb :'/users/create_user', locals: {message: "Username or password missing."}
+    elsif User.find_by(:username => params[:username]) != nil
+      erb :'/users/create_user', locals: {message: "Username already taken. Please try again."}
     else
       @user = User.create(params)
-      session[:user_id] = @user.idea
+      session[:user_id] = @user.id
       redirect '/'
     end
   end
@@ -31,9 +33,9 @@ class UsersControllers < ApplicationController
     end
   end
 
-  post 'login' do
+  post '/login' do
     user = User.find_by(:username => params[:username])
-    if user && user.authentication(params[:password])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to '/'
     else
