@@ -2,18 +2,19 @@
 <br><br>
 
 <% if logged_in? %>
-  View All Recipes
+  <h3>View All Recipes</h3>
 
-  View Recipes by Ingredient:
+  <h3>View Recipes by:</h3>
     <ul>
-      <li>Meat</li>
-      <li>Vegetable</li>
-      <li>Meal</li>
-      <li>Type</li>
+      <li><a href='/meats'>MEAT</a></li>
+      <li><a href='/vegetables'>VEGETABLES</a></li>
+      <li><a href='/meals'>MEAL</a></li>
+      <li><a href='/types'>TYPE</a></li>
     <ul>
 
   <br><br>
   <a href="/recipes/new"><button>Add a New Recipe</button></a>
+
 <% else %>
   <p>
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

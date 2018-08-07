@@ -1,3 +1,3 @@
-class IngredientListsController < Sinatra::Base
+class IngredientListsController < ApplicationController
 
 end

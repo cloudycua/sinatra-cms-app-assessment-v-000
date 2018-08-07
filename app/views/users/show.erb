@@ -1,8 +1,7 @@
 <h1><%= @user.username %>'s Recipes</h1>
 
-<% @user.recipes.each do |r| %>
+<% @user.recipes.each do |recipe| %>
   <div>
     <%= recipe.name %>
   </div>
 <% end %>
-  

@@ -1,3 +1,3 @@
-class MealsController < Sinatra::Base
+class MealsController < ApplicationController
 
 end

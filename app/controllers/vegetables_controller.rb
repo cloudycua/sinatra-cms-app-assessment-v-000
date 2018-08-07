@@ -1,3 +1,3 @@
-class VegetablesController < Sinatra::Base
+class VegetablesController < ApplicationController
 
 end

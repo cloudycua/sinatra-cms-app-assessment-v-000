@@ -1,3 +1,2 @@
-class DishListsController < Sinatra::Base
-
+class DishListsController < ApplicationController
 end

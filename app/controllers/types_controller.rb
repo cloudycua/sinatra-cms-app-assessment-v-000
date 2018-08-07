@@ -1,3 +1,3 @@
-class TypesController < Sinatra::Base
+class TypesController < ApplicationController
 
 end
