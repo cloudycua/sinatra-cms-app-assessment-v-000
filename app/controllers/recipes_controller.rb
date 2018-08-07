@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
       end
 
       @recipe.save
-
+      binding.pry
       redirect "/recipes/#{@recipe.id}"
     else
       redirect to 'login', locals: {message: "Please login:"}
@@ -51,11 +51,22 @@ class RecipesController < ApplicationController
 
   get '/recipes/:id' do
     if logged_in?
-      @recipe = Recipe.find(params[:id])
+      @recipe = Recipe.find_by_id(params[:id])
       erb :'/recipes/show'
     else
       redirect to 'login', locals: {message: "Please login:"}
     end
   end
+
+  get '/recipes/:id/edit' do
+    if logged_in?
+      @recipe = Recipe.find_by_id(params[:id])
+      erb :'/recipes/edit'
+    else
+      redirect to 'login', locals: {message: "Please login:"}
+    end
+  end
+
+
 
 end

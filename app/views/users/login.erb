@@ -1,14 +1,21 @@
-<h1>Recipe Database Login</h1>
+<center>
 
-<% unless locals.empty? %>
-  <%= message %>
-<% end %>
+  <h1>Recipe Database Login</h1>
 
-<form action="/login" method="POST">
+  <% unless locals.empty? %>
+    <%= message %>
+  <% end %>
 
-  <p>Username: <input type="text" id="username" name="username"></p>
-  <p>Password: <input type="text" id="password" name="password"></p>
+  <form action="/login" method="POST">
 
-  <input type="submit" value="Submit">
+    <p>Username: <input type="text" id="username" name="username"></p>
+    <p>Password: <input type="text" id="password" name="password"></p>
 
-</form>
+    <input type="submit" value="Submit">
+
+  </form>
+
+  <br>
+  <h3>Go to <a href="/signup">Sign Up</a></h3>
+
+</center>
