@@ -1,6 +1,10 @@
 <h1>Add a New Recipe</h1>
 <br>
 
+<% unless locals.empty? %>
+  <i><%= message %><br><br></i>
+<% end %>
+
 <form action="/recipes" method="POST">
 
   <p>Name: <input type="text" id="recipe_name" name="recipe[name]"></p></br>
@@ -15,10 +19,6 @@
     <br>
     &nbsp&nbsp&nbsp&nbsp
     <input type="text" id="new_ingredient" name="ingredient[name]" placeholder="Add a new ingredient"><br><br>
-    &nbsp&nbsp&nbsp&nbsp
-    <input type="text" id="new_ingredient_2" name="ingredient2[name]" placeholder="Add a new ingredient"><br><br>
-    &nbsp&nbsp&nbsp&nbsp
-    <input type="text" id="new_ingredient_3" name="ingredient3[name]" placeholder="Add a new ingredient"><br><br>
 
   <br><br>
   <input type="submit" value="Submit">

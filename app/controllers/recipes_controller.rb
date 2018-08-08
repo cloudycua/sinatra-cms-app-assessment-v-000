@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
 
   get '/recipes' do
     if logged_in?
+      @recipes = Recipe.all
       erb :'/recipes/index'
     else
       redirect to 'login', locals: {message: "Please login:"}
@@ -18,22 +19,17 @@ class RecipesController < ApplicationController
 
   post '/recipes' do
     if logged_in?
-      @recipe = Recipe.create(params["recipe"])
-      if !params["ingredient"]["name"].empty?
-        @ingredient = Ingredient.create(params[:ingredient])
-        RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
+      if params[:recipe][:name] == ""
+        erb :'/recipes/new', locals: {message: "Please resubmit recipe and make sure you include a name for it."}
+      else
+        @recipe = current_user.recipes.build(params["recipe"])
+        if !params["ingredient"]["name"].empty?
+          @ingredient = Ingredient.create(params[:ingredient])
+          RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
+        end
+        @recipe.save
+        redirect "/recipes/#{@recipe.id}"
       end
-#      if !params["ingredient1"]["name"].empty?
-#        @ingredient2 = Ingredient.create(params[:ingredient2])
-#        RecipeIngredient.create(:ingredient_id => @ingredient2.id, :recipe_id => @recipe.id)
-#      end
-#      if !params["ingredient1"]["name"].empty?
-#        @ingredient3 = Ingredient.create(params[:ingredient3])
-#        RecipeIngredient.create(:ingredient_id => @ingredient3.id, :recipe_id => @recipe.id)
-#      end
-      @recipe.save
-      binding.pry
-      redirect "/recipes/#{@recipe.id}"
     else
       redirect to 'login', locals: {message: "Please login:"}
     end
@@ -51,12 +47,43 @@ class RecipesController < ApplicationController
   get '/recipes/:id/edit' do
     if logged_in?
       @recipe = Recipe.find_by_id(params[:id])
-      erb :'/recipes/edit'
+      if @recipe && @recipe.user == current_user
+        erb :'/recipes/edit'
+      else
+        redirect to 'recipes/:id', locals: {message: "Only the owner of this recipe can modify it."}
+      end
     else
       redirect to 'login', locals: {message: "Please login:"}
     end
   end
 
+  patch '/recipes/:id' do
+    if logged_in?
+      @recipe = Recipe.find_by_id(params[:id])
+      @recipe.update(params[:recipe])
+      if !params["ingredient"]["name"].empty?
+        @ingredient = Ingredient.create(params[:ingredient])
+        RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
+      end
+      @recipe.save
+      redirect "/recipes/#{@recipe.id}"
+    else
+      redirect to 'login', locals: {message: "Please login:"}
+    end
+  end
 
+  delete '/recipes/:id/delete' do
+    if logged_in?
+    @recipe = Recipe.find_by_id(params[:id])
+      if @recipe && @recipe.user == current_user
+        @recipe.delete
+        redirect to '/recipes/index'
+      else
+        redirect to 'recipes/:id/', locals: {message: "Only the owner of this recipe can modify it."}
+      end
+    else
+      redirect to 'login', locals: {message: "Please login:"}
+    end
+  end
 
 end
