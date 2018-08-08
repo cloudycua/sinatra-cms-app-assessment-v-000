@@ -22,7 +22,8 @@ class RecipesController < ApplicationController
       if params[:recipe][:name] == ""
         erb :'/recipes/new', locals: {message: "Please resubmit recipe and make sure you include a name for it."}
       else
-        @recipe = current_user.recipes.build(params["recipe"])
+        @recipe = Recipe.create(params["recipe"])
+        @recipe.user_id = current_user.id
         if !params["ingredient"]["name"].empty?
           @ingredient = Ingredient.create(params[:ingredient])
           RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
@@ -73,15 +74,10 @@ class RecipesController < ApplicationController
   end
 
   delete '/recipes/:id/delete' do
-    binding.pry
-    if logged_in?
     @recipe = Recipe.find_by_id(params[:id])
-      if @recipe && @recipe.user == current_user
-        @recipe.delete
-        redirect to '/recipes/index'
-      else
-        redirect to 'recipes/:id/', locals: {message: "Only the owner of this recipe can modify it."}
-      end
+    if logged_in? && @recipe && @recipe.user == current_user
+      @recipe.delete
+      redirect to '/recipes'
     else
       redirect to 'login', locals: {message: "Please login:"}
     end
