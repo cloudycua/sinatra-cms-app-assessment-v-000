@@ -1,7 +1,8 @@
 <h1><%= @user.username %>'s Recipes</h1>
 
 <% @user.recipes.each do |recipe| %>
-  <div>
-    <%= recipe.name %>
-  </div>
+  <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
 <% end %>
+
+<br><br>
+<a href="/recipes/new"><button>Add a New Recipe</button></a>

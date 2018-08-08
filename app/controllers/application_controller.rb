@@ -10,6 +10,14 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    @ingredients = []
+    Recipe.all.each do |r|
+      r.ingredients.each do |i|
+        if !@ingredients.include?(i)
+          @ingredients << i
+        end
+      end
+    end
     erb :index
   end
 

@@ -24,9 +24,14 @@ class RecipesController < ApplicationController
       else
         @recipe = Recipe.create(params["recipe"])
         @recipe.user_id = current_user.id
-        if !params["ingredient"]["name"].empty?
-          @ingredient = Ingredient.create(params[:ingredient])
-          RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
+        @recipe.username = current_user.username
+        if !params["ingredient_1"]["name"].empty?
+          @ingredient_1 = Ingredient.create(params[:ingredient_1])
+          RecipeIngredient.create(:ingredient_id => @ingredient_1.id, :recipe_id => @recipe.id)
+        end
+        if !params["ingredient_2"]["name"].empty?
+          @ingredient_2 = Ingredient.create(params[:ingredient_2])
+          RecipeIngredient.create(:ingredient_id => @ingredient_2.id, :recipe_id => @recipe.id)
         end
         @recipe.save
         redirect "/recipes/#{@recipe.id}"
@@ -40,6 +45,16 @@ class RecipesController < ApplicationController
     if logged_in?
       @recipe = Recipe.find_by_id(params[:id])
       erb :'/recipes/show'
+    else
+      redirect to 'login', locals: {message: "Please login:"}
+    end
+  end
+
+  get '/recipes/:id/author' do
+    if logged_in?
+      @user_id = Recipe.find_by_id(params[:id]).user_id
+      @user = User.find_by_id(@user_id)
+      erb :'/users/show'
     else
       redirect to 'login', locals: {message: "Please login:"}
     end

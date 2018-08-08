@@ -4,12 +4,12 @@
 <% if logged_in? %>
   <h3><a href='/recipes'>View All Recipes</a></h3>
 
+  <h3><a href='/users/:slug'>View My Recipes</a></h3>
+
   <h3>View Recipes by</h3>
-    <% Recipe.all.each do |r| %>
-      <% r.ingredients.all.each do |i| %>
-        <li><a href="/ingredients/<%= i.id %>"><%= i.name %></a></li>
-      <% end %>
-    <% end %>  
+    <% @ingredients.each do |i| %>
+      <li><a href="/ingredients/<%= i.id %>"><%= i.name %></a></li>
+    <% end %>
 
   <br><br>
   <a href="/recipes/new"><button>Add New Recipe</button></a>
