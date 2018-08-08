@@ -33,6 +33,10 @@ class RecipesController < ApplicationController
           @ingredient_2 = Ingredient.create(params[:ingredient_2])
           RecipeIngredient.create(:ingredient_id => @ingredient_2.id, :recipe_id => @recipe.id)
         end
+        if !params["ingredient_3"]["name"].empty?
+          @ingredient_3 = Ingredient.create(params[:ingredient_3])
+          RecipeIngredient.create(:ingredient_id => @ingredient_3.id, :recipe_id => @recipe.id)
+        end
         @recipe.save
         redirect "/recipes/#{@recipe.id}"
       end
