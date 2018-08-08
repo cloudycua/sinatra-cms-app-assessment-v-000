@@ -58,6 +58,7 @@ class RecipesController < ApplicationController
     if logged_in?
       @user_id = Recipe.find_by_id(params[:id]).user_id
       @user = User.find_by_id(@user_id)
+      @user.username = "#{@user.username}'s"
       erb :'/users/show'
     else
       redirect to 'login', locals: {message: "Please login:"}
