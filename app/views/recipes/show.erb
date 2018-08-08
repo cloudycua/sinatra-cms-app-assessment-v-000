@@ -16,4 +16,7 @@
 <form action="/recipes/<%= @recipe.id %>/delete" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Recipe">
-</form>  
+</form>
+
+<br>
+<a href="/recipes/new"><button>Add New Recipe</button></a>

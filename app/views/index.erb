@@ -5,12 +5,14 @@
   <h3><a href='/recipes'>View All Recipes</a></h3>
 
   <h3>View Recipes by</h3>
-    <% Ingredient.all.each do |i| %>
-      <li><a href="/ingredients/<%= i.id %>"><%= i.name %></a></li>
-    <% end %>
+    <% Recipe.all.each do |r| %>
+      <% r.ingredients.all.each do |i| %>
+        <li><a href="/ingredients/<%= i.id %>"><%= i.name %></a></li>
+      <% end %>
+    <% end %>  
 
   <br><br>
-  <a href="/recipes/new"><button>Add a New Recipe</button></a>
+  <a href="/recipes/new"><button>Add New Recipe</button></a>
 
 <% else %>
   <p>

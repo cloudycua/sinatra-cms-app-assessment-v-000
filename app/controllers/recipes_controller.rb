@@ -61,6 +61,9 @@ class RecipesController < ApplicationController
   patch '/recipes/:id' do
     if logged_in?
       @recipe = Recipe.find_by_id(params[:id])
+      if params[:recipe][:name] == ""
+        params[:recipe][:name] = @recipe.name
+      end
       @recipe.update(params[:recipe])
       if !params["ingredient"]["name"].empty?
         @ingredient = Ingredient.create(params[:ingredient])
