@@ -1,3 +1,0 @@
-class TypesController < ApplicationController
-
-end

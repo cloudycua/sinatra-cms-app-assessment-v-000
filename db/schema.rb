@@ -13,24 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20180806222628) do
 
-  create_table "dish_lists", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "meal_id"
-    t.integer "type_id"
-  end
-
-  create_table "ingredient_lists", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "meat_id"
-    t.integer "vegetable_id"
-  end
-
-  create_table "meals", force: :cascade do |t|
+  create_table "ingredients", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "meats", force: :cascade do |t|
-    t.string "name"
+  create_table "recipe_ingredients", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -38,17 +27,9 @@ ActiveRecord::Schema.define(version: 20180806222628) do
     t.integer "user_id"
   end
 
-  create_table "types", force: :cascade do |t|
-    t.string "name"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-  end
-
-  create_table "vegetables", force: :cascade do |t|
-    t.string "name"
   end
 
 end

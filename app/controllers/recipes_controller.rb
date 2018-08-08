@@ -2,7 +2,6 @@ class RecipesController < ApplicationController
 
   get '/recipes' do
     if logged_in?
-      @recipes = Recipe.all
       erb :'/recipes/index'
     else
       redirect to 'login', locals: {message: "Please login:"}
@@ -20,27 +19,18 @@ class RecipesController < ApplicationController
   post '/recipes' do
     if logged_in?
       @recipe = Recipe.create(params["recipe"])
-
-      if !params[:meat][:name].empty?
-        @meat = params[:meat]
-        Meat.create(:name => @meat[:name])
+      if !params["ingredient"]["name"].empty?
+        @ingredient = Ingredient.create(params[:ingredient])
+        RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
       end
-
-      if !params[:vegetable][:name].empty?
-        @vegetable = params[:vegetable]
-        Vegetable.create(:name => @vegetable[:name])
-      end
-
-      if !params[:meal][:name].empty?
-        @meal = params[:meal]
-        Meal.create(:name => @meal[:name])
-      end
-
-      if !params[:type][:name].empty?
-        @type = params[:type]
-        Type.create(:name => @type[:name])
-      end
-
+#      if !params["ingredient1"]["name"].empty?
+#        @ingredient2 = Ingredient.create(params[:ingredient2])
+#        RecipeIngredient.create(:ingredient_id => @ingredient2.id, :recipe_id => @recipe.id)
+#      end
+#      if !params["ingredient1"]["name"].empty?
+#        @ingredient3 = Ingredient.create(params[:ingredient3])
+#        RecipeIngredient.create(:ingredient_id => @ingredient3.id, :recipe_id => @recipe.id)
+#      end
       @recipe.save
       binding.pry
       redirect "/recipes/#{@recipe.id}"

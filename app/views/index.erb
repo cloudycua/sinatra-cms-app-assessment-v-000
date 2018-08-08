@@ -1,16 +1,13 @@
 <h1>Welcome to the Recipe Database!</h1>
-<br><br>
+<br>
 
 <% if logged_in? %>
   <h3><a href='/recipes'>View All Recipes</a></h3>
 
-  <h3>View Recipes by:</h3>
-    <ul>
-      <li><a href='/meats'>MEAT</a></li>
-      <li><a href='/vegetables'>VEGETABLES</a></li>
-      <li><a href='/meals'>MEAL</a></li>
-      <li><a href='/types'>TYPE</a></li>
-    <ul>
+  <h3>View Recipes by</h3>
+    <% Ingredient.all.each do |i| %>
+      <li><a href="/ingredients/<%= i.id %>"><%= i.name %></a></li>
+    <% end %>
 
   <br><br>
   <a href="/recipes/new"><button>Add a New Recipe</button></a>

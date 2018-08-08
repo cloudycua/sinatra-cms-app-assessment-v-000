@@ -5,12 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
-use UsersControllers
+use UsersController
 use RecipesController
-use MeatsController
-use VegetablesController
-use MealsController
-use TypesController
-use IngredientListsController
-use DishListsController
+use IngredientsController
 run ApplicationController

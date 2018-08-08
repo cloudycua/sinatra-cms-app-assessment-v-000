@@ -5,54 +5,20 @@
 
   <p>Name: <input type="text" id="recipe_name" name="recipe[name]"></p></br>
 
-  <h3>RECIPE INFORMATION</h3>
-
-    <h4>&nbsp&nbsp&nbsp&nbspMeal Type</h4>
-      <% Meal.all.each do |i| %>
-        &nbsp&nbsp&nbsp&nbsp
-        <input type="checkbox" id="meal_<%= i.id %>" name="recipe[meal_ids][]" value="<%= i.id %>">
-        <label><%= i.name %></label>
-        <br>
-      <% end %>
-      <br>
-      &nbsp&nbsp&nbsp&nbsp
-      <input type="text" id="new_meal" name="meal[name]" placeholder="Add new meal type"><br>
-
-    <h4>&nbsp&nbsp&nbsp&nbspDish Type</h4>
-      <% Type.all.each do |i| %>
-        &nbsp&nbsp&nbsp&nbsp
-        <input type="checkbox" id="type_<%= i.id %>" name="recipe[type_ids][]" value="<%= i.id %>">
-        <label><%= i.name %></label>
-        <br>
-      <% end %>
-      <br>
-      &nbsp&nbsp&nbsp&nbsp
-      <input type="text" id="new_type" name="type[name]" placeholder="Add new dish type"><br>
-
-  <br>
   <h3>INGREDIENTS</h3>
 
-  <h4>&nbsp&nbsp&nbsp&nbspMeat</h4>
-    <% Meat.all.each do |i| %>
+    <% Ingredient.all.each do |i| %>
       &nbsp&nbsp&nbsp&nbsp
-      <input type="checkbox" id="meat_<%= i.id %>" name="recipe[meat_ids][]" value="<%= i.id %>">
-      <label><%= i.name %></label>
-      <br>
+      <input type="checkbox" id="ingredient_<%= i.id %>" name="recipe[ingredient_ids][]" value="<%= i.id %>">
+      <label><%= i.name %></label><br>
     <% end %>
     <br>
     &nbsp&nbsp&nbsp&nbsp
-    <input type="text" id="new_meat" name="meat[name]" placeholder="Add a new meat ingredient"><br>
-
-    <h4>&nbsp&nbsp&nbsp&nbspVegetables</h4>
-      <% Vegetable.all.each do |i| %>
-        &nbsp&nbsp&nbsp&nbsp
-        <input type="checkbox" id="vegetable_<%= i.id %>" name="recipe[vegetable_ids][]" value="<%= i.id %>">
-        <label><%= i.name %></label>
-        <br>
-      <% end %>
-      <br>
-      &nbsp&nbsp&nbsp&nbsp
-      <input type="text" id="new_vegetable" name="vegetable[name]" placeholder="Add a new vegetable ingredient"><br>
+    <input type="text" id="new_ingredient" name="ingredient[name]" placeholder="Add a new ingredient"><br><br>
+    &nbsp&nbsp&nbsp&nbsp
+    <input type="text" id="new_ingredient_2" name="ingredient2[name]" placeholder="Add a new ingredient"><br><br>
+    &nbsp&nbsp&nbsp&nbsp
+    <input type="text" id="new_ingredient_3" name="ingredient3[name]" placeholder="Add a new ingredient"><br><br>
 
   <br><br>
   <input type="submit" value="Submit">

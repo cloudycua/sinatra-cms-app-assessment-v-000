@@ -1,4 +1,4 @@
-class UsersControllers < ApplicationController
+class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(current_user.slug)

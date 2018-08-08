@@ -1,3 +1,6 @@
-<h1><%= @recipe.name %> Recipe</h2>
+<h1><%= @recipe.name %> Recipe</h1>
 
-<h4>Meal: <%= @recipe.meals.each {|meal| meal.name } %>
+<h2>Ingredients</h2>
+  <% @recipe.ingredients.each do |i| %>
+    <li><%= i.name %></li>
+  <% end %>
