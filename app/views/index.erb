@@ -2,12 +2,10 @@
   <i><%= message %><br><br></i>
 <% end %>
 
-<center>
-<h1>Welcome to the Recipe Database!</h1>
-<br>
-</center>
-
 <% if logged_in? %>
+  <h1>Welcome to the Recipe Database!</h1>
+  <br>
+
   <h3><a href='/recipes'>View All Recipes</a></h3>
 
   <h3><a href='/users/:slug'>View My Recipes</a></h3>
@@ -22,11 +20,14 @@
 
 <% else %>
 <center>
+  <h1>Welcome to the Recipe Database!</h1>
+  <br>
+
   <p>Please Log In or Sign Up to view the database</p>
   <br>
   <a href="/login"><button>Log In</button></a>
   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   <a href="/signup"><button>Sign Up</button></a>
-<% end %>
 </center>
+<% end %>
