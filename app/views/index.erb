@@ -1,5 +1,11 @@
+<% unless locals.empty? %>
+  <i><%= message %><br><br></i>
+<% end %>
+
+<center>
 <h1>Welcome to the Recipe Database!</h1>
 <br>
+</center>
 
 <% if logged_in? %>
   <h3><a href='/recipes'>View All Recipes</a></h3>
@@ -15,17 +21,12 @@
   <a href="/recipes/new"><button>Add New Recipe</button></a>
 
 <% else %>
-  <p>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    Please Log In or Sign Up to view the database
-  </p>
+<center>
+  <p>Please Log In or Sign Up to view the database</p>
   <br>
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   <a href="/login"><button>Log In</button></a>
   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   <a href="/signup"><button>Sign Up</button></a>
 <% end %>
+</center>
