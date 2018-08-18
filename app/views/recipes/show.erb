@@ -3,7 +3,7 @@
 <% end %>
 
 <h1><%= @recipe.name %> Recipe</h1>
-<h3>Author: <%= @recipe.username %></h3>
+<i><h3>Author: <%= @recipe.username %></h3></i>
 
 <h2>Ingredients</h2>
   <% @recipe.ingredients.each do |i| %>
@@ -11,8 +11,8 @@
   <% end %>
 
 <h2>Directions</h2>
-  <% @recipe.directions %>
-<br><br>
+  <%= @recipe.directions %>
+<br><br><br><br>
 
 <a href="/recipes/<%= @recipe.id %>/edit"><button>Edit Recipe</button></a>
 <br><br>
