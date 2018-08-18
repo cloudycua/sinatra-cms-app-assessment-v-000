@@ -5,7 +5,7 @@ class IngredientsController < ApplicationController
       @ingredients = Ingredient.all
       erb :'/ingredients/index'
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 
@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
       @ingredient = Ingredient.find_by_id(params[:id])
       erb :'/ingredients/show'
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 

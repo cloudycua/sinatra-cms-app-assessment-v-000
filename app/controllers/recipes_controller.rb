@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
       @recipes = Recipe.all
       erb :'/recipes/index'
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 
@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
     if logged_in?
       erb :'/recipes/new'
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 
@@ -41,7 +41,7 @@ class RecipesController < ApplicationController
         redirect "/recipes/#{@recipe.id}"
       end
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 
@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find_by_id(params[:id])
       erb :'/recipes/show'
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 
@@ -61,20 +61,20 @@ class RecipesController < ApplicationController
       @user.username = "#{@user.username}'s"
       erb :'/users/show'
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 
   get '/recipes/:id/edit' do
     if logged_in?
       @recipe = Recipe.find_by_id(params[:id])
-      if @recipe && @recipe.user == current_user
+      if @recipe && @recipe.user_id == current_user.id
         erb :'/recipes/edit'
       else
-        redirect to 'recipes/:id', locals: {message: "Only the owner of this recipe can modify it."}
+        erb :'/recipes/show', locals: {message: "Only the owner of this recipe can modify it."}
       end
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 
@@ -89,20 +89,27 @@ class RecipesController < ApplicationController
         @ingredient = Ingredient.create(params[:ingredient])
         RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
       end
+      if params[:recipe][:directions] == ""
+        params[:recipe][:directions] = @recipe.directions
+      end
       @recipe.save
       redirect "/recipes/#{@recipe.id}"
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 
   delete '/recipes/:id/delete' do
-    @recipe = Recipe.find_by_id(params[:id])
-    if logged_in? && @recipe && @recipe.user == current_user
-      @recipe.delete
-      redirect to '/recipes'
+    if logged_in?
+      @recipe = Recipe.find_by_id(params[:id])
+      if @recipe && @recipe.user_id == current_user.id
+        @recipe.delete
+        redirect to '/recipes'
+      else
+        erb :'/recipes/show', locals: {message: "Only the owner of this recipe can delete it."}
+      end
     else
-      redirect to 'login', locals: {message: "Please login:"}
+      erb :'/users/login', locals: {message: "Please login first"}
     end
   end
 

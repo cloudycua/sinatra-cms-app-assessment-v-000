@@ -1,13 +1,17 @@
-<h1><%= @recipe.name %> Recipe</h1>
-
 <% unless locals.empty? %>
-  <%= message %>
+  <i><%= message %></i>
 <% end %>
+
+<h1><%= @recipe.name %> Recipe</h1>
+<h3>Author: <%= @recipe.username %></h3>
 
 <h2>Ingredients</h2>
   <% @recipe.ingredients.each do |i| %>
     <li><%= i.name %></li>
   <% end %>
+
+<h2>Directions</h2>
+  <% @recipe.directions %>
 <br><br>
 
 <a href="/recipes/<%= @recipe.id %>/edit"><button>Edit Recipe</button></a>
