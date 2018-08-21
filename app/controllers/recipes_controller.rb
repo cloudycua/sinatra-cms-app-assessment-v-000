@@ -81,18 +81,20 @@ class RecipesController < ApplicationController
   patch '/recipes/:id' do
     if logged_in?
       @recipe = Recipe.find_by_id(params[:id])
-      if params[:recipe][:name] == ""
-        params[:recipe][:name] = @recipe.name
+      if @recipe && @recipe.user_id == current_user.id
+        if params[:recipe][:name] == ""
+          params[:recipe][:name] = @recipe.name
+        end
+        @recipe.update(params[:recipe])
+        if !params["ingredient"]["name"].empty?
+          @ingredient = Ingredient.create(params[:ingredient])
+          RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
+        end
+        if params[:recipe][:directions] == ""
+          params[:recipe][:directions] = @recipe.directions
+        end
+        @recipe.save
       end
-      @recipe.update(params[:recipe])
-      if !params["ingredient"]["name"].empty?
-        @ingredient = Ingredient.create(params[:ingredient])
-        RecipeIngredient.create(:ingredient_id => @ingredient.id, :recipe_id => @recipe.id)
-      end
-      if params[:recipe][:directions] == ""
-        params[:recipe][:directions] = @recipe.directions
-      end
-      @recipe.save
       redirect "/recipes/#{@recipe.id}"
     else
       erb :'/users/login', locals: {message: "Please login first"}

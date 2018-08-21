@@ -4,7 +4,7 @@
 
   <input id="hidden" type="hidden" name="_method" value="PATCH">
 
-  <p><input type="text" id="recipe_name" name="recipe[name]" placeholder="Change recipe name"></p></br>
+  <p><input type="text" id="recipe_name" name="recipe[name]" value="<%= @recipe.name %>"></p></br>
 
   <h3>INGREDIENTS</h3>
 
@@ -20,7 +20,7 @@
 
   <h3>DIRECTIONS</h3>
     &nbsp&nbsp&nbsp&nbsp
-    <input type="text" id="recipe_directions" name="recipe[directions]" placeholder="<%= @recipe.directions %>"></br>
+    <input type="text" id="recipe_directions" name="recipe[directions]" value="<%= @recipe.directions %>"></br>
 
   <br><br>
   <input type="submit" value="Edit Recipe">
